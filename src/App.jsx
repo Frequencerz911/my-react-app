@@ -1,4 +1,6 @@
+import React from "react";
 import PokemonCard from "./components/PokemonCard.jsx"
+
 
 const pokemonList = [
   {
