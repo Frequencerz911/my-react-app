@@ -1,7 +1,7 @@
 import React from "react";
 import PokemonCard from "./components/PokemonCard.jsx"
+import NavBar from "./components/NavBar.jsx";
 import { useState } from "react";
-
 
 const pokemonList = [
   {
@@ -31,30 +31,27 @@ const pokemonList = [
 ];
 
 function App() {
+const [pokemonIndex, setPokemonIndex] = useState(0);
 
-  const [pokemonIndex, setPokemonIndex] = useState(0);
+const previous = () => {
+setPokemonIndex (pokemonIndex - 1);
+}
 
-  const previous = () => {
-    setPokemonIndex (pokemonIndex - 1);
-    }
-
-  const next = () => {
-    setPokemonIndex (pokemonIndex + 1)
-  }
-  
+const next = () => {
+setPokemonIndex (pokemonIndex + 1)
+}
   const pokemon = pokemonList[pokemonIndex];
 
   return (
     <div>
-      <PokemonCard pokemon={pokemon}/>
+      <PokemonCard 
+      pokemon={pokemon}/>
 
-      {pokemonIndex > 0 &&
-      <button onClick={previous} >previous</button>
-      }
-
-      {pokemonIndex < pokemonList.length -1 &&
-      <button onClick= {next}>next</button>
-      }
+      <NavBar
+      pokemonIndex={pokemonIndex}
+      previous={previous}
+      next={next}
+      pokemonList={pokemonList}/>
     </div>
   );
 }
